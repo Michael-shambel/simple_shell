@@ -9,5 +9,5 @@
 void _print_stdio(const char *print)
 {
 	write(STDOUT_FILENO, print, strlen(print));
+	/**used as a printf function*/
 }
-
