@@ -1,4 +1,4 @@
-#include "shell.c"
+#include "shell.h"
 
 /**
  *impliment_command - is to execute the prompt

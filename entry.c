@@ -1,4 +1,4 @@
-#include "shel.h"
+#include "shell.h"
 
 /**
  *main - function for entry point
@@ -8,10 +8,11 @@
  */
 int main(void)
 {
-	char propt[150];
+	/*char prompt[150];*/
 
 	while (true)
-	{
+	
 		prompt_entry();
 
 	return (0);
+}
