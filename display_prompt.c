@@ -1,4 +1,5 @@
-#iinclude "shell.h"
+#include "shell.h"
+
 /**
  * prompt_entry - function to display the prompt
  *
