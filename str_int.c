@@ -21,7 +21,7 @@ int corelative(info_t *info)
 int check_delim(char car, char *delimeter)
 {
 	while (*delimeter)
-		if (*delimeter++ == c)
+		if (*delimeter++ == car)
 			return (1);
 
 	return (0);

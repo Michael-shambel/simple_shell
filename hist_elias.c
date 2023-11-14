@@ -47,7 +47,7 @@ int set_alias(info_t *info, char *str)
 	pointer = _strchr(str, '=');
 	if (!pointer)
 		return (1);
-	if (!*++p)
+	if (!*++pointer)
 		return (unset_alias(info, str));
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
