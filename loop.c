@@ -7,7 +7,7 @@
  *
  * Return: success or error
  */
-int shell(info_t *info, char **av)
+int hsh(info_t *info, char **av)
 {
 	ssize_t r = 0;
 	int builtin_resp = 0;
@@ -34,7 +34,7 @@ int shell(info_t *info, char **av)
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (builtin_resp == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
@@ -50,7 +50,7 @@ int shell(info_t *info, char **av)
  */
 int find_builtin(info_t *info)
 {
-	int x, built_in_ret = -1;
+	int x, builtin_resp = -1;
 	builtin_table builtintbl[] = {
 		{"exit", _myexit},
 		{"env", _myenv},
@@ -67,10 +67,10 @@ int find_builtin(info_t *info)
 		if (_strcmp(info->argv[0], builtintbl[x].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtinbl[i].func(info);
+			builtin_resp = builtintbl[x].func(info);
 			break;
 		}
-	return (built_in_ret);
+	return (builtin_resp);
 }
 /**
  *find_cmd - finds a command in PATH
@@ -83,7 +83,7 @@ void find_cmd(info_t *info)
 	char *way = NULL;
 	int x, y;
 
-	info->way = info->argv[0];
+	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
 	{
 		info->line_count++;
@@ -95,9 +95,9 @@ void find_cmd(info_t *info)
 	if (!y)
 		return;
 	way = find_path(info, _getenv(info, "PATH="), info->argv[0]);
-	if (path)
+	if (way)
 	{
-		info->path = path;
+		info->path = way;
 		fork_cmd(info);
 	}
 	else
@@ -145,9 +145,9 @@ void fork_cmd(info_t *info)
 		wait(&(info->status));
 		if (WIFEXITED(info->status))
 		{
-			info->status = WEXITSTATUS(indo->status);
+			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n');
+				print_error(info, "Permission denied\n");
 		}
 	}
 }

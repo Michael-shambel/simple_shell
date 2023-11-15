@@ -7,7 +7,7 @@
  *
  * Return: arrray of string
  */
-char **str_word(char *str, char *d)
+char **strtow(char *str, char *d)
 {
 	int x, y, z, i, num_word = 0;
 	char **string;
@@ -17,7 +17,7 @@ char **str_word(char *str, char *d)
 	if (!d)
 		d = " ";
 	for (x = 0; str[x] != '\0'; x++)
-		if (!check_delim(str[i], d) && (check_delim(str[i + 1], d) || !str[i + 1]))
+		if (!is_delim(str[x], d) && (is_delim(str[x + 1], d) || !str[x + 1]))
 			num_word++;
 
 	if (num_word == 0)
@@ -27,10 +27,10 @@ char **str_word(char *str, char *d)
 		return (NULL);
 	for (x = 0, y = 0; y < num_word; y++)
 	{
-		while (check_delim(str[x], d))
+		while (is_delim(str[x], d))
 			x++;
 		z = 0;
-		while (!check_delim(str[x + z], d) && str[x + z])
+		while (!is_delim(str[x + z], d) && str[x + z])
 			z++;
 		string[y] = malloc((z + 1) * sizeof(char));
 		if (!string[y])
@@ -41,8 +41,8 @@ char **str_word(char *str, char *d)
 			return (NULL);
 		}
 		for (i = 0; i < z; i++)
-			s[y][i] = str[x++];
-		s[y][i] = 0;
+			string[y][i] = str[x++];
+		string[y][i] = 0;
 	}
 	string[y] = NULL;
 	return (string);
@@ -56,41 +56,41 @@ char **str_word(char *str, char *d)
  *Return: araray of a string
  *
  */
-char **strtow2(char *str, char d)
+char **strtow2(char *string, char f)
 {
-	int i, j, k, m, numwords = 0;
-	char **s;
+	int x, y, z, a, n_words = 0;
+	char **st;
 
-	if (str == NULL || str[0] == 0)
+	if (string == NULL || string[0] == 0)
 		return (NULL);
-	for (i = 0; str[i] != '\0'; i++)
-		if ((str[i] != d && str[i + 1] == d) ||
-		    (str[i] != d && !str[i + 1]) || str[i + 1] == d)
-			numwords++;
-	if (numwords == 0)
+	for (x = 0; string[x] != '\0'; x++)
+		if ((string[x] != f && string[x + 1] == f) ||
+		    (string[x] != f && !string[x + 1]) || string[x + 1] == f)
+			n_words++;
+	if (n_words == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
-	if (!s)
+	st = malloc((1 + n_words) * sizeof(char *));
+	if (!st)
 		return (NULL);
-	for (i = 0, j = 0; j < numwords; j++)
+	for (x = 0, y = 0; y < n_words; y++)
 	{
-		while (str[i] == d && str[i] != d)
-			i++;
-		k = 0;
-		while (str[i + k] != d && str[i + k] && str[i + k] != d)
-			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		while (string[x] == f && string[x] != f)
+			x++;
+		z = 0;
+		while (string[x + z] != f && string[x + z] && string[x + z] != f)
+			z++;
+		st[y] = malloc((z + 1) * sizeof(char));
+		if (!st[y])
 		{
-			for (k = 0; k < j; k++)
-				free(s[k]);
-			free(s);
+			for (z = 0; z < y; z++)
+				free(st[z]);
+			free(st);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
-			s[j][m] = str[i++];
-		s[j][m] = 0;
+		for (a = 0; a < z; a++)
+			st[y][a] = string[x++];
+		st[y][a] = 0;
 	}
-	s[j] = NULL;
-	return (s);
+	st[y] = NULL;
+	return (st);
 }

@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * clear_info - function that initializes field of structure
@@ -30,21 +30,22 @@ void set_info(info_t *info, char **av)
 	info->fname = av[0];
 	if (info->arg)
 	{
-		info->argv = strtok(info->arg, " \t");
+		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
-				info->argv[0] = strdup(info->arg);
+				info->argv[0] = _strdup(info->arg);
 				info->argv[1] = NULL;
 			}
 		}
 		for (j = 0; info->argv && info->argv[j]; j++)
-			info->argc = j;
+			;
+		info->argc = j;
 
-			replace_alias(info);
-			replace_vars(info);
+		replace_alias(info);
+		replace_alias(info);
 	}
 }
 
@@ -63,6 +64,8 @@ void free_info(info_t *info, int all)
 	info->path = NULL;
 	if (all)
 	{
+		if (!info->cmd_buf)
+			free(info->arg);
 		if (info->env)
 			free_list(&(info->env));
 		if (info->history)

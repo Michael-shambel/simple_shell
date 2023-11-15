@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *exit_shell - exit the shell
+ *_myexit - exit the shell
  *@info: structure argument
  *
  * Return: exits with status
  */
-int exit_shell(info_t *info)
+int _myexit(info_t *info)
 {
 	int chext;
 
@@ -28,43 +28,43 @@ int exit_shell(info_t *info)
 	return (-2);
 }
 /**
- *chenge_directory - change the directory of the process
+ *_mycd - change the directory of the process
  *@info: structure argument
  *
  *Return: Always 0
  */
-int chenge_directory(info_t *info)
+int _mycd(info_t *info)
 {
-	char *s, *dir, buff[1024];
+	char *string, *direct, buff[1024];
 	int cd_ret;
 
-	s = getcwd(buff, 1024);
-	if (!s)
+	string = getcwd(buff, 1024);
+	if (!string)
 		_puts("TODO: >>getcwd failure emsg her<<\n");
 	if (!info->argv[1])
 	{
-		dir = _getenv(info, "HOME=");
-		if (!dir)
-			ch_ret =
-				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
+		direct = _getenv(info, "HOME=");
+		if (!direct)
+			cd_ret =
+				chdir((direct = _getenv(info, "PWD=")) ? direct : "/");
 		else
-			ch_ret = chdir(dir);
+			cd_ret = chdir(direct);
 	}
 	else if (_strcmp(info->argv[1], "-") == 0)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
-			_puts(s);
+			_puts(string);
 			_putchar('\n');
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
 		cd_ret =
-			chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
+			chdir((direct = _getenv(info, "PWD=")) ? direct : "/");
 	}
 	else
-		ch_ret = chdir(info->argv[1]);
-	if (ch_ret == -1)
+		cd_ret = chdir(info->argv[1]);
+	if (cd_ret == -1)
 	{
 		print_error(info, "can't cd to");
 		_eputs(info->argv[1]), _eputchar('\n');
@@ -72,17 +72,17 @@ int chenge_directory(info_t *info)
 	else
 	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenv(info, "PWD", getcwd(buff, 1024));
 	}
 	return (0);
 }
 /**
- *help_shell - change directory
+ *_myhelp - change directory
  *@info: structure argument
  *
  *Return: integer
  */
-int help_shell(info_t *info)
+int _myhelp(info_t *info)
 {
 	char **arg_array;
 

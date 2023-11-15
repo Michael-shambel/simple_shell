@@ -1,21 +1,20 @@
 #include "main.h"
 
 /**
- * strncpy - function that copies characters
+ * _strncpy - function that copies characters
  * @dest: pointer to destination string
  * @src: pointer to source string
  * @num: max. number of characters to be copied
  *
  * Return: copied string
  */
-
-char *strncpy(char *dest, char *src, int num)
+char *_strncpy(char *dest, char *src, int num)
 {
 	int a, b;
-	char *entry = dest;
+	char *en = dest;
 
 	a = 0;
-	while src[a] != '\0' && a < num - 1
+	while (src[a] != '\0' && a < num - 1)
 	{
 		dest[a] = src[a];
 		a++;
@@ -29,19 +28,18 @@ char *strncpy(char *dest, char *src, int num)
 			b++;
 		}
 	}
-	return (entry);
+	return (en);
 }
 
 /**
- * strncat - function that concatenates two strings
+ * _strncat - function that concatenates two strings
  * @dest: pointer to destination string
  * @src: ponter to a source string
  * @num: max number of characters
  *
  * Return: concatenated string
  */
-
-char *strncat(char *dest, char *src, int num)
+char *_strncat(char *dest, char *src, int num)
 {
 	int a, b;
 	char *entry = dest;
@@ -62,14 +60,13 @@ char *strncat(char *dest, char *src, int num)
 }
 
 /**
- * strchr - function that locates a character in a string
+ * _strchr - function that locates a character in a string
  * @str: pointer to string to be passed
  * @c: character to be searched for in string
  *
  * Return: pointer to first occurrence of character 'c'
  */
-
-char *strchr(char *str, char c)
+char *_strchr(char *str, char c)
 {
 	do {
 		if (*str == c)

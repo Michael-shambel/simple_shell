@@ -31,33 +31,32 @@ int _erratoi(char *s)
 }
 
 /**
- * print_err - function that prints error name
+ * print_error - function that prints error name
  * @info: the pointer to structure
  * @estr: pointer to string containing error type
  *
  * Return: 0 if success -1 if failure
  */
 
-void print_err(info_t *info, char *estr)
+void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fname);
 	_eputs(": ");
-	print_dec(info->line_count, STDERR_FILENO);
+	print_d(info->line_count, STDERR_FILENO);
 	_eputs(": ");
-	_eputs(nfo->argv[0]);
+	_eputs(info->argv[0]);
 	_eputs(": ");
 	_eputs(estr);
 }
 
 /**
- * print_dec - function that prints a decimal
+ * print_d - function that prints a decimal
  * @input: number to be printed
  * @fd: file descriptor to write stdout an stderr
  *
  * Return: number of characters
  */
-
-int print_dec(int input, int fd)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int j, counter = 0;
@@ -90,17 +89,16 @@ int print_dec(int input, int fd)
 }
 
 /**
- * convert_no - function that converts
+ * convert_number - function that converts
  * @num: number to be converted
  * @base: base for conversion
  * @flags: flags for conversion process
  *
  * Return: pointer to converted string
  */
-
-char *convert_no(long int num, int base, int flags)
+char *convert_number(long int num, int base, int flags)
 {
-	static char *arr;
+	static char *array;
 	static char buff[50];
 	char sign = 0;
 	char *pointer;
@@ -116,7 +114,7 @@ char *convert_no(long int num, int base, int flags)
 	*pointer = '\0';
 
 	do	{
-		*--pointer = arr[k % base];
+		*--pointer = array[k % base];
 		k /= base;
 	} while (k != 0);
 
@@ -126,13 +124,13 @@ char *convert_no(long int num, int base, int flags)
 }
 
 /**
- * delet_comment - function that replaces 1st instance of '#' with '0'
+ * remove_comments - function that replaces 1st instance of '#' with '0'
  * @buffer: pointer to string to be modified
  *
  * Return: 0;
  */
 
-void delet_comment(char *buffer)
+void remove_comments(char *buffer)
 {
 	int j;
 

@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *dis_history - display the history list
+ *_myhistory - display the history list
  *@info: structure argument
  *
  *Return: Always 0
  */
-int dis_history(info_t *info)
+int _myhistory(info_t *info)
 {
 	print_list(info->history);
 	return (0);
@@ -75,11 +75,11 @@ int print_alias(list_t *node)
 	return (1);
 }
 /**
- *mi_alias - emulate the alias command
+ *_myalias - emulate the alias command
  *@info: structure argument
  *Return: zero
  */
-int mi_alias(info_t *info)
+int _myalias(info_t *info)
 {
 	int x = 0;
 	char *pointer = NULL;

@@ -56,7 +56,7 @@ int _putfd(char car, int fd)
 		x = 0;
 	}
 	if (car != BUF_FLUSH)
-		buffer[i++] = car;
+		buffer[x++] = car;
 	return (1);
 }
 /**
@@ -66,7 +66,7 @@ int _putfd(char car, int fd)
  *
  * Return: number of chars
  */
-int _putsfd(char **string, int fd)
+int _putsfd(char *string, int fd)
 {
 	int x = 0;
 

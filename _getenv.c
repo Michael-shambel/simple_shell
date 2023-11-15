@@ -1,32 +1,30 @@
 #include "main.h"
 
 /**
- * get_env - function that returns string array copy of environment
+ * get_environ - function that returns string array copy of environment
  * @info: a pointer to a structure
  *
  * Return: pointer to character array
  */
-
-char **get_env(info_t *info)
+char **get_environ(info_t *info)
 {
-	if (!info->env || info->env_changed)
+	if (!info->environ || info->env_changed)
 	{
-		info->env = list_to_strings(info->env);
+		info->environ = list_to_strings(info->env);
 		info->env_changed = 0;
 	}
 
-	return (info->env);
+	return (info->environ);
 }
 
 /**
- * unset_env - function that removes an environment variable
+ * _unsetenv - function that removes an environment variable
  * @info: pointer to structure
  * @var: pointer to character array representin variable to unset
  *
  * Return: integer
  */
-
-int unset_env(info_t *info, char *var)
+int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
 	size_t j = 0;
@@ -52,15 +50,14 @@ int unset_env(info_t *info, char *var)
 }
 
 /**
- * set_env - function that sets or modifies environment variable,
+ * _setenv - function that sets or modifies environment variable,
  * @info: pointer to structure
  * @var: pointer to character array for env variable
  * @value: pointer to character array for value of env variable
  *
  * Return: integer
  */
-
-int set_env(info_t *info, char *var, char *value)
+int _setenv(info_t *info, char *var, char *value)
 {
 	char *buff = NULL;
 	list_t *node;
@@ -69,16 +66,16 @@ int set_env(info_t *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buff = malloc(strlen(var) + strlen(value) + 2);
+	buff = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buff)
 		return (1);
-	strcpy(buff, var);
-	strcat(buff, "=");
-	strcat(buff, value);
+	_strcpy(buff, var);
+	_strcat(buff, "=");
+	_strcat(buff, value);
 	node = info->env;
 	while (node)
 	{
-		q = starts_with(node->str, var)
+		q = starts_with(node->str, var);
 		if (q && *q == '=')
 		{
 			free(node->str);
@@ -93,4 +90,3 @@ int set_env(info_t *info, char *var, char *value)
 	info->env_changed = 1;
 	return (0);
 }
-

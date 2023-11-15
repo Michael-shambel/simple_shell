@@ -5,7 +5,7 @@
  *
  *Return: 1 if free, or 0
  */
-int b_free(void **ptr)
+int bfree(void **ptr)
 {
 	if (ptr && *ptr)
 	{

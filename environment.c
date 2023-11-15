@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *print_env - orint the current envirnment
+ *_myenv - orint the current envirnment
  *@info: structure argument
  *
  * Return: always zero
  */
-int print_env(info_t *info)
+int _myenv(info_t *info)
 {
 	print_list_str(info->env);
 	return (0);
@@ -33,12 +33,12 @@ char *_getenv(info_t *info, const char *name)
 	return (NULL);
 }
 /**
- *_initenv - Iniatialize a new environmet
+ *_mysetenv - Iniatialize a new environmet
  *@info: structure argument
  *
  * Return: always zero
  */
-int _initenv(info_t *info)
+int _mysetenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
@@ -50,12 +50,12 @@ int _initenv(info_t *info)
 	return (1);
 }
 /**
- *_remenv - remove an environment
+ *_myunsetenv - remove an environment
  *@info: structure argument
  *
  * Return: always 0
  */
-int _remenv(info_t *info)
+int _myunsetenv(info_t *info)
 {
 	int x;
 
@@ -69,12 +69,12 @@ int _remenv(info_t *info)
 	return (0);
 }
 /**
- *_popenv - populate environment
+ *populate_env_list - populate environment
  *@info: structure argument
  *
  * Return: always zero
  */
-int _popenv(info_t *info)
+int populate_env_list(info_t *info)
 {
 	list_t *node = NULL;
 	size_t x;

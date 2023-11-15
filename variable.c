@@ -8,7 +8,7 @@
  *
  * Return: 1 or 0
  */
-int is_chain(info_t *info, char *buf, size_t *p)
+int is_chain(info_t *info, char *buf, size_t *pointer)
 {
 	size_t y = *pointer;
 
@@ -31,7 +31,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
 	}
 	else
 		return (0);
-	*p = j;
+	*pointer = y;
 	return (1);
 }
 /**
@@ -44,7 +44,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
  *
  * Return: nothing
  */
-void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(info_t *info, char *buf, size_t *pointer, size_t i, size_t len)
 {
 	size_t y = *pointer;
 
@@ -122,10 +122,10 @@ int replace_vars(info_t *info)
 			replace_string(&(info->argv[x]), _strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_starts_with(info->env, &info->arg[x][1], '=');
+		node = node_starts_with(info->env, &info->argv[x][1], '=');
 		if (node)
 		{
-			replace_string(@(info->argv[x]),
+			replace_string(&(info->argv[x]),
 					_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
