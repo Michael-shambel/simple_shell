@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * strncpy - function that copies characters

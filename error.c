@@ -27,15 +27,15 @@ void _eputs(char *string)
 int _eputchar(char car)
 {
 	static int x;
-	static char buf[WRITE_BUF_SIZE];
+	static char buffer[WRITE_BUF_SIZE];
 
 	if (car == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, x);
+		write(2, buffer, x);
 		x = 0;
 	}
 	if (car != BUF_FLUSH)
-		buf[i++] = car;
+		buffer[x++] = car;
 	return (1);
 }
 /**
@@ -48,15 +48,15 @@ int _eputchar(char car)
 int _putfd(char car, int fd)
 {
 	static int x;
-	static char buf[WRITE_BUF_SIZE];
+	static char buffer[WRITE_BUF_SIZE];
 
 	if (car == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, x);
+		write(fd, buffer, x);
 		x = 0;
 	}
 	if (car != BUF_FLUSH)
-		buf[i++] = car;
+		buffer[i++] = car;
 	return (1);
 }
 /**

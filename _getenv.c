@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * get_env - function that returns string array copy of environment
