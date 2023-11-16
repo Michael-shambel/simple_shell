@@ -4,7 +4,7 @@
  *is_chain - test if current char
  *@info: structure argument
  *@buf: the  char buffer
- *@p: adress
+ *@pointer: adress
  *
  * Return: 1 or 0
  */
@@ -38,15 +38,15 @@ int is_chain(info_t *info, char *buf, size_t *pointer)
  *check_chain - check for continue
  *@info: structure argument
  *@buf: char buffer
- *@p: adress of position
+ *@point: adress of position
  *@i: starting postion in buf
  *@len: length
  *
  * Return: nothing
  */
-void check_chain(info_t *info, char *buf, size_t *pointer, size_t i, size_t len)
+void check_chain(info_t *info, char *buf, size_t *point, size_t i, size_t len)
 {
-	size_t y = *pointer;
+	size_t y = *point;
 
 	if (info->cmd_buf_type == CMD_AND)
 	{
@@ -65,7 +65,7 @@ void check_chain(info_t *info, char *buf, size_t *pointer, size_t i, size_t len)
 		}
 	}
 
-	*pointer = y;
+	*point = y;
 }
 /**
  *replace_alias - replace an aliases

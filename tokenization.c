@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * **str_word - split string into words
+ * **strtow - split string into words
  *@str: string to be splited
  *@d: delimiter
  *
@@ -49,8 +49,8 @@ char **strtow(char *str, char *d)
 }
 /**
  * **strtow2 - splits a string into words
- * @str: string to be splited
- *@d: the delimeter
+ * @string: string to be splited
+ *@f: the delimeter
  *
  *
  *Return: araray of a string

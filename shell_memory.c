@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- *b_free - free a pointer
+ *bfree - free a pointer
  *@ptr: adress of pointer
  *
  *Return: 1 if free, or 0

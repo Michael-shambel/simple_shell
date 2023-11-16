@@ -37,7 +37,7 @@ list_t *add_node(list_t **head, const char *string, int num)
  * add_node_end - adds a node to the end of the list
  * @head: address of pointer to head node
  * @string: str field of node
- * @num: node index used by history
+ * @in_num: node index used by history
  *
  * Return: size of list
  */
