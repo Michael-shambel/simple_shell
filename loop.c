@@ -80,7 +80,7 @@ int find_builtin(info_t *info)
  */
 void find_cmd(info_t *info)
 {
-	char *way = NULL;
+	char *path = NULL;
 	int x, y;
 
 	info->path = info->argv[0];
@@ -94,10 +94,10 @@ void find_cmd(info_t *info)
 			y++;
 	if (!y)
 		return;
-	way = find_path(info, _getenv(info, "PATH="), info->argv[0]);
-	if (way)
+	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	if (path)
 	{
-		info->path = way;
+		info->path = path;
 		fork_cmd(info);
 	}
 	else
